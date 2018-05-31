@@ -1,7 +1,14 @@
 import math
 
+
 def validate(circles, blockers):
-    # Is circle in the box?
+    """
+    该函数用来判断所计算出来的结果是否能放到容器中
+    circles 计算所得的圆圈的元组
+    blockers 圆中的小障碍
+
+    return true or false 返回布尔值
+    """
     for circle in circles:
         xmr = circle[0] - circle[2]
         xpr = circle[0] + circle[2]
