@@ -1,12 +1,6 @@
 # ball_in_box
 
 
-conda  env create --file environment.yml
-
-conda install --file requirements.txt -y
-
-pip install -e .
-
 **编程要求**
 * 我们只需要修改*ballinbox.py*里面的ball_in_box函数
 * 实现的算法如下
@@ -17,6 +11,13 @@ pip install -e .
 使得最终r^2*PI最大
 即尽量填满能放置的空间
 ```
+
+conda  env create --file environment.yml
+
+conda install --file requirements.txt -y
+
+pip install -e .
+
 
 
 
