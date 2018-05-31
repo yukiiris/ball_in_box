@@ -1,5 +1,12 @@
 # ball_in_box
 
+conda  env create --file environment.yml
+
+conda install --file requirements.txt -y
+
+pip install -e .
+
+
 
 **编程要求**
 * 我们只需要修改*ballinbox.py*里面的ball_in_box函数
@@ -13,16 +20,6 @@
 ```
 **我手画了一个大致算法图，根据这个图应该很快明白要做什么**
 ![李泽霖算法演示1](https://raw.githubusercontent.com/chiellini/ball_in_box/master/作业布置资料/算法演示1%20.jpg)
-
-
-conda  env create --file environment.yml
-
-conda install --file requirements.txt -y
-
-pip install -e .
-
-
-
 
 
 **以下是老师给的要求**
