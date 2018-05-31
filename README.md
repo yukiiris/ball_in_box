@@ -11,6 +11,9 @@
 使得最终r^2*PI最大
 即尽量填满能放置的空间
 ```
+**我手画了一个大致算法图，根据这个图应该很快明白要做什么**
+![李泽霖算法演示1](https://raw.githubusercontent.com/chiellini/ball_in_box/master/作业布置资料/算法演示1%20.jpg)
+
 
 conda  env create --file environment.yml
 
