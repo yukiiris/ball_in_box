@@ -35,10 +35,12 @@ def ball_in_box(m=5, blockers=[(0.5, 0.5), (0.5, -0.5), (0.5, 0.3)]):
     #     circle_index += 1
     
     # n是对应的blockers里面的blocker的个数
-    n=blockers.__len__()
+    n=len(blockers)
     # circles是最终该算法得到的圆的集合
     # circle的格式为（x,y,r)
     circles=[]
-
+    i=int(0);
+    
+        
 
     return circles
