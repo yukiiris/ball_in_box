@@ -1,16 +1,7 @@
 # -*- coding: utf-8 -*-
-
 import math
 import sys
-# precision
-PERCISION = 500
-# the number of ballons
-NUM_OF_CIRCLE = 5
-# the number of blockers
-NUM_OF_BLOCKERS = 2
-# the range of X-axis and Y-axis
-XRANGE = (-1, 1)
-YRANGE = (-1, 1)
+from ball_in_box import config
 
 __all__ = ['ball_in_box']
 
@@ -61,9 +52,9 @@ def ball_in_box(num_of_circle, blockers):
     """
         Main body of algorithm: Greedy Algorithm
     """
-    xrange = XRANGE
-    yrange = YRANGE
-    percision = PERCISION
+    xrange = config.XRANGE
+    yrange = config.YRANGE
+    percision = config.PERCISION
     circles = []
     dots = prod_dots(xrange, yrange, percision)
     for i in range(num_of_circle):
