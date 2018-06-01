@@ -1,46 +1,83 @@
+# -*- coding: utf-8 -*-
+
 import math
-import random
-from .validate import validate
+import sys
+# precision
+PERCISION = 500
+# the number of ballons
+NUM_OF_CIRCLE = 5
+# the number of blockers
+NUM_OF_BLOCKERS = 2
+# the range of X-axis and Y-axis
+XRANGE = (-1, 1)
+YRANGE = (-1, 1)
 
 __all__ = ['ball_in_box']
 
-def ball_in_box(m=5, blockers=[(0.5, 0.5), (0.5, -0.5), (0.5, 0.3)]):
+
+def prod_dots(xrange, yrange, percision):
     """
-    m is the number circles.
-    m规定了数量，最终圆个数一定要等于m
-    blockers is the list of coordinates of tiny blocks.
-    blockers是一些点，没有大小，只是我们的圆不能穿过它们
-    
-    This returns a list of tuple, composed of x,y of the circle and r of the circle.
+        Divide areas
     """
+    dots = []
+    interval = (xrange[1] - xrange[0]) * 1.0 / percision
+    y_num = int((yrange[1] - yrange[0]) / interval)
+    for i in range(1, percision):
+        for j in range(1, y_num):
+            dots.append((xrange[0] + i * interval, yrange[0] + j * interval))
 
-    # The following is an example implementation.
-    # circles = []
-    # for circle_index in range(m):
+    return dots
 
-    #     x = random.random()*2 - 1
-    #     print(x)
-    #     y = random.random()*2 - 1
-    #     print(y)
-    #     r = random.random()*0.1
-    #     print(r)
 
-    #     circles.append((x, y, r))
-    #     while not validate(circles, blockers):
-    #         x = random.random()*2 - 1
-    #         y = random.random()*2 - 1
-    #         r = random.random()*0.1
-    #         circles[circle_index] = (x, y, r)
+def get_max_r(dot, xrange, yrange, blockers, circles):
+    """
+        Get the largest radius
+    """
+    r_list = []
+    r_list.append(abs(dot[0] - xrange[0]))
+    r_list.append(abs(dot[0] - xrange[1]))
+    r_list.append(abs(dot[1] - yrange[0]))
+    r_list.append(abs(dot[1] - yrange[1]))
+    for blocker in blockers:
+        d = math.sqrt((dot[0] - blocker[0])**2 + (dot[1] - blocker[1])**2)
+        r_list.append(d)
 
-    #     circle_index += 1
-    
-    # n是对应的blockers里面的blocker的个数
-    n=len(blockers)
-    # circles是最终该算法得到的圆的集合
-    # circle的格式为（x,y,r)
-    circles=[]
-    i=int(0);
-    
-        
+    for circle in circles:
+        d = math.sqrt((dot[0] - circle[0])**2 +
+                      (dot[1] - circle[1])**2) - circle[2]
+        # if in other circles, skip it
+        if d <= 0:
+            return 0
+        r_list.append(d)
+
+    r = sys.maxsize
+    for item in r_list:
+        if item < r:
+            r = item
+    return r
+
+
+def ball_in_box(num_of_circle, blockers):
+    """
+        Main body of algorithm: Greedy Algorithm
+    """
+    xrange = XRANGE
+    yrange = YRANGE
+    percision = PERCISION
+    circles = []
+    dots = prod_dots(xrange, yrange, percision)
+    for i in range(num_of_circle):
+        temp_r = 0
+        circle = [0, 0, 0]
+        for dot in dots:
+            r = get_max_r(dot, xrange, yrange, blockers, circles)
+            if r > temp_r:
+                temp_r = r
+                circle[0] = dot[0]
+                circle[1] = dot[1]
+                circle[2] = temp_r
+
+        dots.remove((circle[0], circle[1]))
+        circles.append((circle[0], circle[1], circle[2]))
 
     return circles
