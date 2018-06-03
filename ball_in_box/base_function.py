@@ -52,53 +52,53 @@ def Nodexyr_to_xyrobject(nodes):
 
 def find_proper_one_in_xyrobject_by_r(_judge,nodes):
     """
-    _judge 如果judges为真 则返回最大值 反之返回最小值
+    _judge 如果judges为真 则返回最大值 如果judges为假 则返回最小值
     nodes  需要处理的list,list里面存的是(x,y,r)这样的object
 
     return 返回数字 即是第几个
     """
     
-    m=len(nodes)
-    j=0
-    list_Nodexyr=xyrobject_to_Nodexyr(nodes)
+    m = len(nodes)
+    j = 0
+    list_Nodexyr = xyrobject_to_Nodexyr(nodes)
     if(_judge):
-        max_nodexyr=Nodexyr(0,0,0)
+        max_nodexyr = Nodexyr(0,0,0)
         for i in range(m):
             if(list_Nodexyr[i].r>max_nodexyr.r):
-                j=i
+                j = i
                 max_nodexyr=list_Nodexyr[i]
         return j
     else:
         min_nodexyr=Nodexyr(0,0,0)
         for i in range(m):
             if(list_Nodexyr[i].r<min_nodexyr.r):
-                j=i
-                min_nodexyr=list_Nodexyr[i]
+                j = i
+                min_nodexyr = list_Nodexyr[i]
         return j
 
 def three_lines_suit_circle(cross1,cross2):
     r=np.float64(0)
     x=np.float64(0)
     y=np.float64(0)
-    if(cross1.x==cross2.x):
+    if(cross1.x == cross2.x):
         r=abs(np.float64(cross1.y-cross2.y))
-        y=np.float64(cross1.y+cross2.y)/np.float64(2)
-        x=cross1.x+r
+        y = np.float64(cross1.y+cross2.y)/np.float64(2)
+        x = cross1.x+r
         if(x<XRANGE[0] or x>XRANGE[1]):
-            x=cross1.x-r
+            x = cross1.x-r
     else:
-        r=abs(np.float64(cross1.x-cross2.x))
-        x=np.float64(cross1.x+cross2.x)/np.float64(2)
-        y=cross1.y+r
+        r = abs(np.float64(cross1.x-cross2.x))
+        x = np.float64(cross1.x+cross2.x)/np.float64(2)
+        y = cross1.y+r
         if(y<YRANGE[0] or y>YRANGE[1]):
-            y=cross1.y-r
+            y = cross1.y-r
 
-    circle=Nodexyr(x,y,r)
+    circle = Nodexyr(x,y,r)
     return circle
 
 def two_lines_one_node_suit_circle(cross1,node1):
-    delta_x=np.float64(0)
-    delta_y=np.float64(0)
+    delta_x = np.float64(0)
+    delta_y = np.float64(0)
     # if(cross1.x>0):
     #     if(cross1.y>0):
             
