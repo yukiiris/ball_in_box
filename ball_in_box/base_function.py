@@ -1,4 +1,5 @@
 import numpy as np
+
 # the range of X-axis and Y-axis
 XRANGE = (-1, 1)
 YRANGE = (-1, 1)
